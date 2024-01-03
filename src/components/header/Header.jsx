@@ -14,8 +14,8 @@ import { useState } from "react";
 import "./header.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-const Header = () => {
-  const [openDate, setOpenDate] = useState(false);
+const Header = ({ type }) => {
+  const [openDate, setOpenDate] = useState(false); //Calander Span tıklandığında görünür olması
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -23,9 +23,27 @@ const Header = () => {
       key: "selection",
     },
   ]);
+  //headerSearchText Span tıklandığında görünür olması
+  const [openOptions, setOpenOptions] = useState(false);
+  // oda seçimi vb. prop değişken değeri taşıma
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
+  // string değer name e operation işlem türü stateini taşı
+  const handleOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  };
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div className={type ==="list"?"headerContainer listMode":"headerContainer"}> //? list type ı list pageden
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
@@ -48,52 +66,127 @@ const Header = () => {
             <span>Havaalanı Taksi</span>
           </div>
         </div>
-        <h1 className="headerTitle">Sıradaki konaklamanızı bulun</h1>
-        <p className="headerDesc">
-          Oteller, evler ve çok daha fazlasındaki fırsatları arayın...
-        </p>
-        <button className="headerButton">Sign In/Register</button>
-        <div className="headerSearch">
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faBed} className="headerIcon" />
-            <input
-              type="text"
-              placeholder="Nereye gidiyorsunuz?"
-              className="headerSearchInput"
-            />
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
-            <span
-              onClick={() => setOpenDate(!openDate)}
-              className="headerSearchText"
-            >
-              {`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
-                date[0].endDate,
-                "dd/MM/yyyy"
-              )}`}
-            </span>
-            {openDate && (
-              <DateRange
-                editableDateInputs={true}
-                onChange={(item) => setDate([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={date}
-                className="date"
-              />
-            )}
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">
-              2 yetişkin · 0 çocuk · 1 oda
-            </span>
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <button className="headerBtn">Ara</button>
-          </div>
-        </div>
+        {type !== "list" && (
+          <>
+            <h1 className="headerTitle">Sıradaki konaklamanızı bulun</h1>
+            <p className="headerDesc">
+              Oteller, evler ve çok daha fazlasındaki fırsatları arayın...
+            </p>
+            <button className="headerButton">Sign In/Register</button>
+            <div className="headerSearch">
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faBed} className="headerIcon" />
+                <input
+                  type="text"
+                  placeholder="Nereye gidiyorsunuz?"
+                  className="headerSearchInput"
+                />
+              </div>
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+                <span
+                  onClick={() => setOpenDate(!openDate)}
+                  className="headerSearchText"
+                >
+                  {`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
+                    date[0].endDate,
+                    "dd/MM/yyyy"
+                  )}`}
+                </span>
+                {openDate && (
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={(item) => setDate([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
+                    className="date"
+                  />
+                )}
+              </div>
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+                <span
+                  onClick={() => setOpenOptions(!openOptions)}
+                  className="headerSearchText"
+                >
+                  {`${options.adult} Yetişkin . ${options.children} Çocuk . ${options.room} Oda `}
+                </span>
+                {openOptions && (
+                  <div className="options">
+                    <div className="optionItem">
+                      <span className="optionText">Yetişkin</span>
+                      <div className="optionCounter">
+                        <button
+                          disabled={options.adult <= 0}
+                          className="optionCounterButton"
+                          onClick={() => handleOption("adult", "d")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounterNumber">
+                          {options.adult}
+                        </span>
+                        <button
+                          className="optionCounterButton"
+                          onClick={() => handleOption("adult", "i")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="optionItem">
+                      <span className="optionText">Çocuk</span>
+                      <div className="optionCounter">
+                        <button
+                          disabled={options.children <= 0}
+                          className="optionCounterButton"
+                          onClick={() => handleOption("children", "d")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounterNumber">
+                          {options.children}
+                        </span>
+                        <button
+                          className="optionCounterButton"
+                          onClick={() => handleOption("children", "i")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="optionItem">
+                      <span className="optionText">Oda</span>
+                      <div className="optionCounter">
+                        <button
+                          disabled={options.room <= 0}
+                          className="optionCounterButton"
+                          onClick={() => handleOption("room", "d")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounterNumber">
+                          {options.room}
+                        </span>
+                        <button
+                          className="optionCounterButton"
+                          onClick={() => handleOption("room", "i")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="headerSearchItem">
+                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+                <button className="headerBtn">Ara</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

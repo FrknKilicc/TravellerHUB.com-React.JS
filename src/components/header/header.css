@@ -72,3 +72,47 @@
     position: absolute;
     top: 3.125rem;
 }
+.options{
+    position: absolute;
+    top: 3.125rem;
+    background-color: white;
+    color: gray;
+    border: radius 5px;
+    -webkit-box-shadow:0px 0rem .625rem -0.3125rem rgba(0,0,0,0);
+    box-shadow: 0rem 0rem .625rem -0.3125rem rgba(0,0,0.4) ;
+}
+.optionItem{
+    width: 12.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+}
+.optionCounter{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .75rem;
+    color: black;
+}
+.optionCounterButton{
+    width: 1.875rem;
+    height: 1.875rem;
+    border: 1px solid #0071c2;
+    color: #0071c2;
+    cursor: pointer;
+    background-color: white;
+    margin-top: .375rem;
+    border-radius: 5px;
+}
+.optionText{
+    margin-top: 10px;
+
+}
+.optionCounterButton:disabled{
+    cursor: not-allowed;
+    border-color: grey;
+    
+}
+.headerContainer.listMode{
+    margin: 1.25rem 0rem 0rem 0rem;
+}
