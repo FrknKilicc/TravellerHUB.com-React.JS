@@ -1,0 +1,75 @@
+import "./header.css";
+import {
+  faBed,
+  faCalendarDays,
+  faCar,
+  faPerson,
+  faPlane,
+  faTaxi,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="headerContainer">
+        <div className="headerList">
+          <div className="headerListItem active">
+            <FontAwesomeIcon icon={faBed} />
+            <span>Konaklama</span>
+          </div>
+          <div className="headerListItem">
+            <FontAwesomeIcon icon={faPlane} />
+            <span>Uçak Biletleri</span>
+          </div>
+          <div className="headerListItem">
+            <FontAwesomeIcon icon={faCar} />
+            <span>Araç Kiralama</span>
+          </div>
+          <div className="headerListItem">
+            <FontAwesomeIcon icon={faCar} />
+            <span>Turistik Noktalar</span>
+          </div>
+          <div className="headerListItem">
+            <FontAwesomeIcon icon={faTaxi} />
+            <span>Havaalanı Taksi</span>
+          </div>
+        </div>
+        <h1 className="headerTitle">Sıradaki konaklamanızı bulun</h1>
+        <p className="headerDesc">
+          Oteller, evler ve çok daha fazlasındaki fırsatları arayın...
+        </p>
+        <button className="headerButton">Sign In/Register</button>
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faBed} className="headerIcon" />
+            <input
+              type="text"
+              placeholder="Nereye gidiyorsunuz?"
+              className="headerSearchInput"
+            />
+          </div>
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+            <span className="headerSearchText">
+              Check-in tarihi / Check-out tarihi
+            </span>
+          </div>
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+            <span className="headerSearchText">
+              2 yetişkin · 0 çocuk · 1 oda
+            </span>
+          </div>
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+            <button className="headerBtn">Ara</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
