@@ -14,8 +14,10 @@ import { useState } from "react";
 import "./header.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useNavigate } from "react-router-dom";
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false); //Calander Span tıklandığında görünür olması
+  const [destination, setDestination] = useState(""); 
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -32,6 +34,8 @@ const Header = ({ type }) => {
     room: 1,
   });
 
+  const navigate = useNavigate();
+
   // string değer name e operation işlem türü stateini taşı
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -40,6 +44,9 @@ const Header = ({ type }) => {
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
+  };
+  const handleSearch = () => {
+    navigate("/hotels",{state:{destination,date,options}});
   };
   return (
     <div className="header">
@@ -84,6 +91,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Nereye gidiyorsunuz?"
                   className="headerSearchInput"
+                  onChange={e=>setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
@@ -104,6 +112,7 @@ const Header = ({ type }) => {
                     moveRangeOnFirstSelection={false}
                     ranges={date}
                     className="date"
+                    minDate={new Date()}
                   />
                 )}
               </div>
@@ -186,7 +195,9 @@ const Header = ({ type }) => {
               </div>
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-                <button className="headerBtn">Ara</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Ara
+                </button>
               </div>
             </div>
           </>
