@@ -1,86 +1,76 @@
-.listContainer{
-    display: flow;
-     justify-content: center;
+.listContainer {
+    display: flex;
+    justify-content: center;
     margin-top: 1.25rem;
-    padding-left: 18.75rem;
-    ;
-    
-    
-}
-.listWrapper{
-    width: 24.25rem;
-    max-width: 1024px;
+  }
+  
+  .listWrapper {
+    width: 100%;
+    max-width: 64rem;
     display: flex;
     gap: 1.25rem;
-}
-.listSearch{
-    flex:1;
+  }
+  
+  .listSearch {
+    flex: 1;
     background-color: #febb02;
     padding: .625rem;
-    border-radius: .9375rem;
+    border-radius: 10px;
     position: sticky;
     top: .625rem;
-}
-.lsItem{
+    height: max-content;
+  }
+  
+  .lsTitle{
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: .625rem;
+  }
+  
+  .lsItem{
     display: flex;
     flex-direction: column;
     gap: .3125rem;
-    margin-bottom: 10px;
-}
-
-.lsItem>label{
-   font-style: .75rem;
-}
-.lsItem>input{
-    height: 30px;
+    margin-bottom: .625rem;
+  }
+  
+  .lsItem>label{
+    font-size: .75rem;
+  }
+  
+  .lsItem>input{
+    height: 1.875rem;
     border: none;
-    padding: 5px;
- }
- .lsItem>span{
-    height: 30px;
-    padding: 5px;
+    padding: .3125rem;
+  }
+  .lsItem>span{
+    height: 1.875rem;
+    padding: .3125rem;
     background-color: white;
     display: flex;
     align-items: center;
     cursor: pointer;
- }
- .lsTitle{
-    font-size: 1.25rem;
-    color: #555;
-    margin-bottom: .625rem;
-}
-
-.lsOptions{
+  }
+  
+  .lsOptions{
     padding: .625rem;
-    
-}
-.lsOptions>label{
-font-weight: 800;
-
-
-
-}
-
-.lsOptionItem{
+  }
+  
+  .lsOptionItem{
     display: flex;
     justify-content: space-between;
     margin-bottom: .625rem;
     color: #555;
-}
-
-.lsOptionInput{
-    width: 4.6875rem;
-    border-radius: .3125rem;
-    text-align: center;
-}
-.lsOptionText{
-    font-weight: bold ;
-}
-.listResult{
-    flex: 3;
-}
-
-.lsButton{
+    font-size: .75rem;
+  }
+  
+  .lsOptionInput{
+    width: 3.125rem;
+  }
+  .lsOptionText{
+    font-weight: bold;
+  }
+  .listSearch>button{
     padding: .625rem;
     background-color: #0071c2;
     color: white;
@@ -88,5 +78,8 @@ font-weight: 800;
     width: 100%;
     font-weight: 500;
     cursor: pointer;
-    border-radius: .3125rem;
-}
+  }
+  
+  .listResult {
+    flex: 3;
+  }

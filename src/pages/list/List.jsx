@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import Header from "../../components/header/Header";
-import Navbar from "../../components/navbar/Navbar";
-import { useLocation } from "react-router-dom";
 import "./list.css";
+import Navbar from "../../components/navbar/Navbar";
+import Header from "../../components/header/Header";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
+import SearchItem from "../../components/searchItem/SearchItem";
 
 const List = () => {
   const location = useLocation();
@@ -22,18 +23,15 @@ const List = () => {
           <div className="listSearch">
             <h1 className="lsTitle">Ara</h1>
             <div className="lsItem">
-              <label>Destination</label>
+              <label>Lokasyon</label>
               <input placeholder={destination} type="text" />
             </div>
             <div className="lsItem">
-              <label>Check in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
-                {" "}
-                {`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
-                  date[0].endDate,
-                  "dd/MM/yyyy"
-                )}`}
-              </span>
+              <label>Tarihler Arası</label>
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
+                "MM/dd/yyyy"
+              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDate([item.selection])}
@@ -43,8 +41,8 @@ const List = () => {
               )}
             </div>
             <div className="lsItem">
+              <label>Seçenekler</label>
               <div className="lsOptions">
-                <label>Seçenekler</label>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     En Düşük<small> / Gecelik</small>
@@ -53,41 +51,51 @@ const List = () => {
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
-                    En Yüksek<small> / Gecelik</small>
+                    En Yüksek <small> / Gecelik</small>
                   </span>
                   <input type="number" className="lsOptionInput" />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Yetişkin</span>
                   <input
-                    placeholder={options.adult}
-                    min={1}
                     type="number"
+                    min={1}
                     className="lsOptionInput"
+                    placeholder={options.adult}
                   />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Çocuk</span>
                   <input
-                    min={0}
-                    placeholder={options.children}
                     type="number"
+                    min={0}
                     className="lsOptionInput"
+                    placeholder={options.children}
                   />
                 </div>
                 <div className="lsOptionItem">
-                  <span className="lsOptionText">Odalar</span>
+                  <span className="lsOptionText">Oda</span>
                   <input
-                    min={1}
-                    placeholder={options.room}
                     type="number"
+                    min={1}
                     className="lsOptionInput"
+                    placeholder={options.room}
                   />
                 </div>
               </div>
-              <button className="lsButton">Ara</button>
             </div>
-            <div className="listResult"></div>
+            <button>Search</button>
+          </div>
+          <div className="listResult">
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
           </div>
         </div>
       </div>
