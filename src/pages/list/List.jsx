@@ -9,10 +9,26 @@ import SearchItem from "../../components/searchItem/SearchItem";
 
 const List = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+  const [destination, setDestination] = useState(
+    location.state?.destination || ""
+  );
+  const [date, setDate] = useState(
+    location.state?.date || [
+      {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: "selection",
+      },
+    ]
+  );
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
+  const [options, setOptions] = useState(
+    location.state?.options || {
+      adult: 1,
+      children: 0,
+      room: 1,
+    }
+  );
 
   return (
     <div>
@@ -24,7 +40,12 @@ const List = () => {
             <h1 className="lsTitle">Ara</h1>
             <div className="lsItem">
               <label>Lokasyon</label>
-              <input placeholder={destination} type="text" />
+              <input
+                placeholder={destination}
+                type="text"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+              />
             </div>
             <div className="lsItem">
               <label>Tarihler Arası</label>

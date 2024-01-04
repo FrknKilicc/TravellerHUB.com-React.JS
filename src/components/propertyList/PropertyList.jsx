@@ -1,18 +1,20 @@
 import React from "react";
 import "./propertyList.css";
+import { useNavigate } from "react-router-dom";
 
 const PropertyList = () => {
+  const navigate = useNavigate();
   return (
     <div className="pList">
-      <div className="pListItem">
+      <div className="pListItem" onClick={() => navigate("/hotels")}>
         <img
           src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
           alt=""
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>Hotels</h1>
-          <h2>233 hotels</h2>
+          <h1>Oteller</h1>
+          <h2>233 Otel</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -22,8 +24,8 @@ const PropertyList = () => {
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>Apartments</h1>
-          <h2>2331 hotels</h2>
+          <h1>Daire</h1>
+          <h2>2331 Daire</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -33,8 +35,8 @@ const PropertyList = () => {
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>Resorts</h1>
-          <h2>2331 hotels</h2>
+          <h1>Tatil Köyü</h1>
+          <h2>451 Tatil Köyü</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -44,8 +46,8 @@ const PropertyList = () => {
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>Villas</h1>
-          <h2>2331 hotels</h2>
+          <h1>Villa</h1>
+          <h2>1589 Villa</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -55,8 +57,8 @@ const PropertyList = () => {
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>Cabins</h1>
-          <h2>2331 hotels</h2>
+          <h1>Dağ Evi</h1>
+          <h2>1994 Dağ Evi</h2>
         </div>
       </div>
     </div>

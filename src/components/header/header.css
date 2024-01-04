@@ -25,6 +25,9 @@
    padding: .625rem;
    border-radius: 1.25rem;
 }
+.headerListItem>span{
+    cursor: pointer;
+}
 .headerDesc{
     margin: 1.25rem 0rem ;
 }

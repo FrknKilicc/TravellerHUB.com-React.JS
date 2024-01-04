@@ -17,7 +17,7 @@ import "react-date-range/dist/theme/default.css";
 import { useNavigate } from "react-router-dom";
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false); //Calander Span tıklandığında görünür olması
-  const [destination, setDestination] = useState(""); 
+  const [destination, setDestination] = useState("");
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -46,7 +46,10 @@ const Header = ({ type }) => {
     });
   };
   const handleSearch = () => {
-    navigate("/hotels",{state:{destination,date,options}});
+    navigate("/hotels", { state: { destination, date, options } });
+    if (!destination.trim()) {
+      navigate("/hotels");
+    }
   };
   return (
     <div className="header">
@@ -58,7 +61,7 @@ const Header = ({ type }) => {
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
-            <span>Konaklama</span>
+            <span onClick={() => navigate("/hotels")}>Konaklama</span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
@@ -91,7 +94,7 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Nereye gidiyorsunuz?"
                   className="headerSearchInput"
-                  onChange={e=>setDestination(e.target.value)}
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">

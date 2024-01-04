@@ -1,16 +1,18 @@
 import React from "react";
 import "./searchItem.css";
+import { useNavigate } from "react-router-dom";
 
 const SearchItem = () => {
+  const navigate = useNavigate();
   return (
-    <div className="searchItem">
+    <div className="searchItem" onClick={() => navigate("/hotels/1")}>
       <img
         src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
         alt=""
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">Şehrin Merkezinde DreamsTeams Daire</h1>
+        <h1 className="siTitle">Granada Otel Belek 2 Kişilik Oda</h1>
         <span className="siDistance">Merkeze 150 Metre</span>
         <span className="siTaxiOp">Ücretsiz Havaalanı Taksi</span>
         <span className="siSubtitle">Klimalı</span>
